@@ -1,0 +1,41 @@
+# Common environment variables and PATH setup
+# Can be sourced by both bash and zsh
+
+# Go development
+export GOPATH="$HOME/go"
+export PATH="$HOME/go/bin:$PATH"
+
+# Node.js version manager
+export NVM_DIR="$HOME/.nvm"
+
+# Load nvm (with OS-specific paths)
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    # macOS with Homebrew
+    [ -s "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" ] && \. "$HOMEBREW_PREFIX/opt/nvm/nvm.sh"
+    [ -s "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm"
+else
+    # Linux
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+fi
+
+# Editor preferences
+export EDITOR='nvim'
+export VISUAL='nvim'
+
+# History settings (shell-agnostic)
+export HISTSIZE=5000
+export HISTFILESIZE=10000
+
+# Color support
+export CLICOLOR=1
+export LSCOLORS=ExFxBxDxCxegedabagacad
+
+# FZF integration (if available)
+if command -v fzf &> /dev/null; then
+    if [[ "$SHELL" == *"zsh"* ]]; then
+        source <(fzf --zsh)
+    elif [[ "$SHELL" == *"bash"* ]]; then
+        source <(fzf --bash)
+    fi
+fi

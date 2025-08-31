@@ -1,0 +1,40 @@
+# Sensitive files
+*.key
+*.pem
+*.p12
+*.pfx
+.env
+.env.local
+.env.*.local
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/settings.json
+.idea/
+*.swp
+*.swo
+
+# Local configuration overrides
+local.conf
+*local*
+.local/
+
+# SSH keys and config
+.ssh/
+ssh/config
+ssh/known_hosts
+ssh/id_*
+
+# Git credentials
+.gitconfig.local
+
+# Shell history and cache
+.zsh_history
+.bash_history
+.cache/
+
+# Karabiner backups (contain timestamps but no sensitive data)
+# .config/karabiner/automatic_backups/

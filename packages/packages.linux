@@ -1,0 +1,17 @@
+# Essential packages for Ubuntu/Debian (standard repos only)
+git
+curl
+wget
+fzf
+neovim
+tmux
+zsh
+stow
+
+# Development tools
+nodejs
+npm
+
+# Build essentials
+build-essential
+software-properties-common

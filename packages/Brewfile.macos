@@ -1,0 +1,25 @@
+# macOS packages via Homebrew
+tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "homebrew/core"
+tap "homebrew/services"
+
+# Essential tools
+brew "git"
+brew "curl"
+brew "wget"
+brew "fzf"
+brew "eza"
+brew "neovim"
+brew "tmux"
+brew "stow"
+brew "lazygit"
+
+# Development tools
+brew "nvm"
+
+# AI coding assistant
+brew "opencode"
+
+# Terminal
+cask "iterm2"

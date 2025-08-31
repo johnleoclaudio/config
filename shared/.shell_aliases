@@ -1,0 +1,90 @@
+# Common shell aliases and functions
+# Can be sourced by both bash and zsh
+
+# Navigation aliases
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+
+# Git aliases
+alias g='git'
+alias gs='git status'
+alias ga='git add'
+alias gc='git commit'
+alias gp='git push'
+alias gl='git pull'
+alias gd='git diff'
+alias gb='git branch'
+alias gco='git checkout'
+alias glog='git log --oneline --graph --decorate'
+alias gstash='git stash'
+alias gpop='git stash pop'
+
+# Directory listing - compatible with both ls and eza
+if command -v eza &> /dev/null; then
+    # eza aliases (for systems with eza)
+    alias ld='eza -lD'                               # lists only directories
+    alias lf='eza -lf --color=always | grep -v /'   # lists only files
+    alias lh='eza -dl .* --group-directories-first' # lists only hidden files
+    alias ll='eza -al --group-directories-first'    # lists everything with directories first
+    alias ls='eza -alf --color=always --sort=size | grep -v /' # lists files sorted by size
+    alias lt='eza -al --sort=modified'               # lists everything sorted by time
+else
+    # fallback to standard ls (will be replaced by eza after installation)
+    alias ll='ls -alF --color=auto'
+    alias la='ls -A --color=auto'
+    alias l='ls -CF --color=auto'
+    alias lt='ls -lt --color=auto'
+    alias ld='ls -ld */ --color=auto'
+    alias ls='ls --color=auto'
+fi
+
+# Common utilities
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
+# Safety aliases
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+
+# Development shortcuts
+alias t='tmux'
+alias v='nvim'
+alias vim='nvim'
+alias lg='lazygit'
+alias oc='opencode'
+
+# Docker shortcuts (since you use Docker)
+alias d='docker'
+alias dc='docker-compose'
+alias dps='docker ps'
+alias di='docker images'
+
+# Common functions
+mkcd() {
+    mkdir -p "$1" && cd "$1"
+}
+
+# Extract function for various archive types
+extract() {
+    if [ -f "$1" ]; then
+        case "$1" in
+            *.tar.bz2)   tar xjf "$1"     ;;
+            *.tar.gz)    tar xzf "$1"     ;;
+            *.bz2)       bunzip2 "$1"     ;;
+            *.rar)       unrar x "$1"     ;;
+            *.gz)        gunzip "$1"      ;;
+            *.tar)       tar xf "$1"      ;;
+            *.tbz2)      tar xjf "$1"     ;;
+            *.tgz)       tar xzf "$1"     ;;
+            *.zip)       unzip "$1"       ;;
+            *.Z)         uncompress "$1"  ;;
+            *.7z)        7z x "$1"        ;;
+            *)           echo "'$1' cannot be extracted via extract()" ;;
+        esac
+    else
+        echo "'$1' is not a valid file"
+    fi
+}
