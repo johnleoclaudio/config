@@ -8,7 +8,6 @@ return {
       "json",
       "lua",
       "markdown",
-      "markdown_inline",
       "python",
       "query",
       "regex",
@@ -16,7 +15,7 @@ return {
       "typescript",
       "vim",
       "yaml",
-      "go"
+      "go",
     },
   },
 }
